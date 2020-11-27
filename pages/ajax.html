@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX</title>
+</head>
+<body>
+<script>
+    const DEFAULT_MESSAGE = 'AJAX is going to change this text!';
+    document.write(`<p id="text">${DEFAULT_MESSAGE}</p>`);
+</script>
+<button onclick="makeAjaxRequest()">Click me!</button>
+<br />
+<button onclick="rollback()">Rollback</button>
+<script>
+    const text = document.querySelector('#text');
+    const makeAjaxRequest = () => {
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                text.innerHTML = xhr.status === 200
+                    ? xhr.responseText
+                    : 'Something went wrong when server was processing the request...';
+            }
+        };
+        xhr.open('GET', '/cs/ajax', true);
+        xhr.send(null);
+    }
+    const rollback = () => {
+        text.innerHTML = DEFAULT_MESSAGE;
+    };
+</script>
+</body>
+</html>
