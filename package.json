@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "logs": "heroku logs --tail",
+    "deploy": "git push heroku master ",
     "start": "node ./server.js"
   },
   "keywords": [],
