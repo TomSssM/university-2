@@ -1,7 +1,7 @@
 const { URL } = require('url')
 
 const hi = (router) => (req, res) => {
-    const url = new URL(`${req.headers.host}${req.url}`);
+    const url = new URL(`${req.protocol || ''}${req.headers.host}${req.url}`);
     const name = url.searchParams.get('q');
     return name
         ? router.html(res, `
