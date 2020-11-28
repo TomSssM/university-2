@@ -1,10 +1,7 @@
 const { URL } = require('url')
 
 const hi = (router) => (req, res) => {
-    const href = `${req.protocol || ''}${req.headers.host}${req.url}`;
-    console.log('HREF:');
-    console.log(href);
-    const url = new URL(href);
+    const url = new URL(`https://${req.headers.host}${req.url}`);
     const name = url.searchParams.get('q');
     return name
         ? router.html(res, `
